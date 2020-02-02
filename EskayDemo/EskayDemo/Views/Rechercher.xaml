@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" BackgroundColor="#F8F3FE"
+             x:Class="EskayDemo.Views.Rechercher">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Margin="0,30,0,10" >
+                        <Label Text="Tout trouver avec eSky" FontSize="Medium" FontAttributes="Bold" TextColor="#161943"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding RecherchertypeItems}" Margin="20" HeightRequest="150" x:Name="recherchetype">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                Span="2" VerticalItemSpacing="5" HorizontalItemSpacing="5" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView>
+                                    <Frame Margin="5" BackgroundColor="White" WidthRequest="100" HeightRequest="50" CornerRadius="10" Padding="0" HasShadow="True" >
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="10"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Padding="0" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="3" >
+                                                <BoxView CornerRadius="2" VerticalOptions="FillAndExpand" Color="{Binding SideColor}" />
+                                            </StackLayout>
+
+                                            <Grid Grid.Row="1" Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="15"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" 
+                                       Source="{Binding IconRechercherType}"/>
+                                                <Label Grid.Column="1" Text="{Binding Title}" FontSize="Small" TextColor="#161943" HorizontalOptions="Center" 
+                                       VerticalOptions="Center" />
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                </ContentView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Label Text="Les meilleurs offres du jours" FontSize="Medium" FontAttributes="Bold" TextColor="#161943"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+                    <StackLayout VerticalOptions="FillAndExpand">
+
+                        <ListView SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None" Margin="10" x:Name="offre" ItemsSource="{Binding Offfres}"  >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell >
+                                        <Frame HeightRequest="200" Padding="0"  CornerRadius="20" Margin="5" >
+                                            <Grid>
+                                                <Image Source="{Binding CityImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+                                                <Label TextColor="White" Margin="20" Text="{Binding CountryDestination}" HorizontalTextAlignment="Start" FontSize="10" VerticalTextAlignment="Start"/>
+                                                <StackLayout Spacing="0" Margin="20,40" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                                                    <Label TextColor="White" Text="{Binding City}" HorizontalTextAlignment="Start" FontSize="Small" VerticalTextAlignment="Start"/>
+                                                    <Label TextColor="White">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="à partir de " FontAttributes="Bold" />
+                                                                <Span Text="{Binding Price}" FontAttributes="Bold" />
+                                                                <Span Text=" EUR " FontAttributes="Bold" />
+                                                                <Span Text="aller-retour" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label TextColor="White" Margin="0,20,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Depart depuis "/>
+                                                                <Span Text="{Binding Country}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </Grid>
+
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
